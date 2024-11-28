@@ -1,0 +1,17 @@
+<tbody>
+    {% for cita in citas %}
+    <tr>
+        <td>{{ cita.fecha_cita }}</td>
+        <td>{{ cita.medico.nombre }} {{ cita.medico.apellido }}</td>
+        <td>{{ "Confirmada" if cita.confirm_cita else "Pendiente" }}</td>
+        <td>
+            <a href="/users/editarCita/{{ cita.id_cita }}">Editar</a> |
+            <form action="/users/eliminarCita/{{ cita.id_cita }}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('¿Estás seguro de eliminar esta cita?')">Eliminar</button>
+            </form> |
+            <a href="/users/ver-receta/{{ cita.id_cita }}">Ver Receta</a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+
